@@ -1,0 +1,12 @@
+{
+	"Name": "VEXT-Football",
+	"Authors": [ "txt" ],
+	"Description": "You can play football now!",
+	"Version": "1.0.0",
+	"HasWebUI": false,
+	"HasVeniceEXT": true,
+	"Dependencies": 
+	{
+        "veniceext": "^1.0.0"
+	}
+}
