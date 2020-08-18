@@ -39,8 +39,7 @@ NetEvents:Subscribe(
         Transform.up = Vec3(0, 1, 0)
         Transform.forward = Vec3(0, 0, 1)
 
-        Transform.trans =
-            player.soldier.transform.trans + player.soldier.transform.up * 1.7 + player.soldier.transform.forward * 2.0
+        Transform.trans = player.soldier.transform.trans + player.soldier.transform.up * 1.7 + player.soldier.transform.forward * 2.0
 
         local BallId = #ballArray + 1
 

@@ -1,7 +1,6 @@
 local footballLoader = require("__shared/FootballLoader")
 
 local g_Debug = false
-local g_Debug = true
 
 local clientBallArray = {}
 
@@ -90,7 +89,7 @@ NetEvents:Subscribe(
         end
 
         for j, BallData in pairs(clientBallArray) do
-            if ballData.id == ballUpdateInfo.id then
+            if BallData.id == ballUpdateInfo.id then
                 print("Client Updating ball " .. tostring(BallData.id))
 
                 if BallData.entity == nil then
@@ -101,7 +100,7 @@ NetEvents:Subscribe(
                 --local Distance = ballData.entity.transform.trans:Distance(ballUpdateInfo.Transform.trans)
 
                 --if Distance > 0.3 then
-                BallData.entity.transform = ballUpdateInfo.aransform
+                BallData.entity.transform = ballUpdateInfo.transform
                 --end
 
                 local PhysicsData = BallData.entity.physicsEntityBase
@@ -124,7 +123,7 @@ NetEvents:Subscribe(
 NetEvents:Subscribe(
     "FootBall:Client:SetBallHost",
     function(ballId)
-        --print("We are host for " .. tostring(ballId))
+        print("We are host for " .. tostring(ballId))
         clientHostBalls[ballId] = true
     end
 )
@@ -133,6 +132,8 @@ NetEvents:Subscribe(
     "FootBall:Client:SpawnBall",
     function(ballInformation)
         print("Creating entity with id " .. tostring(ballInformation.id))
+
+        
 
         local Params = EntityCreationParams()
 
@@ -158,7 +159,7 @@ NetEvents:Subscribe(
         Entity:RegisterCollisionCallback(ballInformation, BallCollisionCallback)
 
         local ClientBallInformation = {
-            entity = entity,
+            entity = Entity,
             id = ballInformation.id
         }
 
@@ -206,7 +207,7 @@ Events:Subscribe(
         local EntityBus = EntityManager:CreateEntitiesFromBlueprint(footballLoader:GetInstance().blueprint, Params)
 
         for i, Entity in pairs(EntityBus.entities) do
-            entity:Init(Realm.Realm_Client, true)
+            Entity:Init(Realm.Realm_Client, true)
             Entity:FireEvent("Enable")
             Entity:FireEvent("Start")
 
