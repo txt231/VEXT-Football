@@ -1,6 +1,7 @@
 local footballLoader = require("__shared/FootballLoader")
 
 local g_Debug = false
+local g_Debug = true
 
 local clientBallArray = {}
 
